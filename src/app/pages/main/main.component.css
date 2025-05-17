@@ -1,0 +1,80 @@
+:root {
+    --background-light: #fff;
+    --background-dark: #1e1e1e;
+    --text-light: #000;
+    --text-dark: #fff;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--background-light);
+    color: var(--text-light);
+    transition: background 0.3s, color 0.3s;
+  }
+  
+  .dark-mode .main-header {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+  }
+  
+  .logo {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+    transition: color 0.3s;
+  }
+  
+  .nav-links a:hover {
+    color: #e63946;
+  }
+  
+  .theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .chibi-theme-select {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .chibi-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+  
+  .chibi-container img {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .chibi-container img:hover {
+    transform: scale(1.2);
+  }
+  

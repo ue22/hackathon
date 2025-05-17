@@ -86,9 +86,13 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
-              }
+                "input": "public",
+                "output": "/"
+              },
+              "src/assets",
+              "src/favicon.ico"
             ],
+
             "styles": [
               "src/styles.css"
             ],

@@ -1,0 +1,25 @@
+<header class="main-header">
+    <div class="logo">The End Page</div>
+  
+    <nav class="nav-links">
+      <a routerLink="/about-us">About Us</a>
+      <a routerLink="/journal">My Journal</a>
+      <a routerLink="/testimonials">Testimonial</a>
+      <a routerLink="/post">Post</a>
+      <button class="theme-toggle" (click)="toggleTheme()">
+        {{ isDarkMode ? '☀️' : '🌙' }}
+      </button>
+    </nav>
+  </header>
+  
+  <section class="chibi-theme-select">
+    <h2>Select Your Mood</h2>
+    <div class="chibi-container">
+      <img src="assets/chibi1.png" alt="Happy" (click)="changeTheme('happy')">
+      <img src="assets/chibi2.png" alt="Sad" (click)="changeTheme('sad')">
+      <img src="assets/chibi3.png" alt="Angry" (click)="changeTheme('angry')">
+      <img src="assets/chibi4.png" alt="Calm" (click)="changeTheme('calm')">
+      <img src="assets/chibi5.png" alt="Excited" (click)="changeTheme('excited')">
+    </div>
+  </section>
+  
