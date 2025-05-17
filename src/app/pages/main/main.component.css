@@ -1,80 +1,254 @@
-:root {
-    --background-light: #fff;
-    --background-dark: #1e1e1e;
-    --text-light: #000;
-    --text-dark: #fff;
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: sans-serif;
+  padding-top: 80px; /* To prevent content from hiding behind fixed header */
+}
+
+/* Fixed Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* Optional blur effect */
+  color: white;
+}
+
+/* White logo text */
+.logo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* White nav links */
+.nav-links a {
+  margin-left: 3rem;
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffccff;
+}
+
+/* Banner section with GIF background */
+.banner {
+  position: relative;
+  height: 500px;
+  background-image: url('/assets/splashy.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.banner-overlay {
+  padding: 20px;
+  border-radius: 12px;
+  color: #000000;
+}
+
+.banner h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.journal-button {
+  background-color: #000000;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.journal-button:hover {
+  background-color: #e91e63;
+}
+
+/* Responsive Mood Section Enhancements */
+@media (max-width: 1024px) {
+  .mood-icon {
+    width: 180px;
   }
-  
-  body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .main-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: var(--background-light);
-    color: var(--text-light);
-    transition: background 0.3s, color 0.3s;
-  }
-  
-  .dark-mode .main-header {
-    background-color: var(--background-dark);
-    color: var(--text-dark);
-  }
-  
-  .logo {
+}
+
+@media (max-width: 768px) {
+  .banner h1 {
     font-size: 2rem;
-    font-weight: bold;
   }
-  
-  .nav-links {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
+
+  .mood-icon {
+    width: 120px;
   }
-  
-  .nav-links a {
-    text-decoration: none;
-    font-weight: bold;
-    color: inherit;
-    transition: color 0.3s;
+
+  .content h1 {
+    font-size: 1.8rem;
+    word-break: break-word;
   }
-  
-  .nav-links a:hover {
-    color: #e63946;
-  }
-  
-  .theme-toggle {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  
-  .chibi-theme-select {
-    text-align: center;
-    margin-top: 2rem;
-  }
-  
-  .chibi-container {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+
+  .mood-buttons {
     flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner h1 {
+    font-size: 1.5rem;
+  }
+
+  .mood-icon {
+    width: 80px;
+  }
+
+  .content {
     padding: 1rem;
   }
-  
-  .chibi-container img {
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-    transition: transform 0.3s;
+
+  .content h1 {
+    font-size: 1.2rem;
   }
-  
-  .chibi-container img:hover {
-    transform: scale(1.2);
+
+  .mood-buttons button {
+    margin: 0.3rem;
   }
-  
+}
+
+.mood-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.mood-buttons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+
+.mood-icon {
+  width: 250px;
+  height: auto;
+  transition: transform 0.2s;
+}
+
+.mood-icon:hover {
+  transform: scale(1.1);
+}
+
+.content {
+  padding: 2rem;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+/* Example mood themes */
+.happy {
+  background-color: #e0e030;
+}
+
+.sad {
+  background-color: #2f76e0;
+}
+
+.angry {
+  background-color: #c53b3b;
+}
+
+.anxious {
+  background-color: #a033cf;
+}
+
+.calm {
+  background-color: #76d676;
+}
+
+.about-us {
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 16px;
+  transition: background-color 0.5s ease;
+  color: #000000;
+}
+
+.about-us h2 {
+  font-size: 2rem;
+  color: #000000;
+}
+
+.chibi-section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 2rem 0 1rem;
+  color: var(--primary-text, #000000);
+}
+
+.chibi-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.chibi-card {
+  flex: 0 0 auto;
+  width: 250px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 1rem;
+  text-align: center;
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.chibi-card:hover {
+  transform: scale(1.05);
+}
+
+.chibi-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.chibi-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.chibi-story {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: #282727;
+}
