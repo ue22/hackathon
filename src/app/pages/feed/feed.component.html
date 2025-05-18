@@ -1,0 +1,59 @@
+<div class="feed-container">
+  <section class="recent-entries">
+    <h2><i class="icon-clock"></i> Recent Entries</h2>
+    <div *ngFor="let entry of recentEntries" class="entry-card">
+      <div class="entry-header">
+        <h3 class="entry-title">{{ entry.title }}</h3>
+        <span class="entry-date">{{ entry.date }}</span>
+      </div>
+      <p class="entry-description">{{ entry.description }}</p>
+      
+      <div class="entry-footer">
+        <div class="entry-icons">
+          <button (click)="addReaction(entry, 'like')"><i class="icon-thumbs-up"></i> {{ entry.likes }}</button>
+          <button (click)="addReaction(entry, 'love')"><i class="icon-heart"></i> {{ entry.loves }}</button>
+          <button><i class="icon-comment"></i> {{ entry.comments }}</button>
+        </div>
+        <span class="reaction-count">{{ entry.totalReactions }} reactions</span>
+      </div>
+
+      <!-- Comment Section -->
+      <div class="comment-section">
+        <ul>
+          <li *ngFor="let cmt of entry.commentList">{{ cmt }}</li>
+        </ul>
+        <input type="text" [(ngModel)]="newComment[entry.title]" placeholder="Write a comment..." />
+        <button (click)="postComment(entry)">Post</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="hall-of-fame">
+    <h2><i class="icon-star"></i> Hall of Fame</h2>
+    <div *ngFor="let entry of hallOfFameEntries" class="entry-card fame">
+      <div class="entry-header">
+        <h3 class="entry-title">{{ entry.title }}</h3>
+        <span class="entry-date">{{ entry.date }}</span>
+      </div>
+      <p class="entry-description">{{ entry.description }}</p>
+      
+      <div class="entry-footer">
+        <div class="entry-icons">
+          <button (click)="addReaction(entry, 'like')"><i class="icon-thumbs-up"></i> {{ entry.likes }}</button>
+          <button (click)="addReaction(entry, 'love')"><i class="icon-heart"></i> {{ entry.loves }}</button>
+          <button><i class="icon-comment"></i> {{ entry.comments }}</button>
+        </div>
+        <span class="reaction-count fame">{{ entry.totalReactions }} reactions</span>
+      </div>
+
+      <!-- Comment Section -->
+      <div class="comment-section">
+        <ul>
+          <li *ngFor="let cmt of entry.commentList">{{ cmt }}</li>
+        </ul>
+        <input type="text" [(ngModel)]="newComment[entry.title]" placeholder="Write a comment..." />
+        <button (click)="postComment(entry)">Post</button>
+      </div>
+    </div>
+  </section>
+</div>

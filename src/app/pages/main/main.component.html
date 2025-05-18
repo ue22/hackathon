@@ -3,53 +3,44 @@
   <nav class="nav-links">
     <a href="#banner">Home</a>
     <a href="#">My Journal</a>
-    <a href="#">Feed</a>
-    <a href="#">Logout</a>
+    <a routerLink="/feed">Feed</a> 
   </nav>
 </header>
 
-<section class="banner" id="banner" >
+<section class="banner" id="banner">
   <div class="banner-overlay">
     <h1>Your story deserves to be felt</h1>
-    <button class="journal-button" [ngClass]="selectedMood">Customize The end Page </button>
+    <button class="journal-button" [ngClass]="selectedMood">Customize The end Page</button>
   </div>
 </section>
 
 <div class="content" [ngClass]="selectedMood">
   <h1>{{ selectedMood ? selectedMood.toUpperCase() + ' MODE' : 'Choose Your Emotion' }}</h1>
-  
+
   <div class="mood-buttons">
     <button *ngFor="let mood of moods" (click)="changeTheme(mood)">
       <img [src]="getMoodIcon(mood)" [alt]="mood" class="mood-icon" />
     </button>
   </div>
 
-
-
   <section class="about-us" id="about" [ngClass]="selectedMood">
-
-  <h2>About Us</h2>
-  <p>
-    At theend.page, we understand that every goodbye carries a different emotion 
-    : joy, sadness, anger, anxiety, or calm. That’s why we’ve created a space where you can craft a personal farewell page
-     that matches how you truly feel. To bring your emotion to life, we’ve introduced five expressive chibi characters 
-     each representing one core feeling. When you select a chibi, the color theme of the website shifts to reflect that 
-     emotion, creating an atmosphere that feels just right for your message. Whether you’re writing a peaceful goodbye,
+    <h2>About Us</h2>
+    <p>
+      At theend.page, we understand that every goodbye carries a different emotion
+      : joy, sadness, anger, anxiety, or calm. That’s why we’ve created a space where you can craft a personal farewell page
+      that matches how you truly feel. To bring your emotion to life, we’ve introduced five expressive chibi characters
+      each representing one core feeling. When you select a chibi, the color theme of the website shifts to reflect that
+      emotion, creating an atmosphere that feels just right for your message. Whether you’re writing a peaceful goodbye,
       a fiery rant, or a bittersweet note, theend.page lets you leave with color, creativity, and meaning.
-  </p>
+    </p>
 
-  <h3 class="chibi-section-title">Meet the Mood Chibis</h3>
-  <div class="chibi-carousel" [ngClass]="selectedMood">
-    <div class="chibi-card" *ngFor="let mood of moods">
-  <img [src]="getMoodIcon(mood)" [alt]="mood" class="chibi-image" />
-  <h4 class="chibi-name">{{ getChibiName(mood) }}</h4>
-  <p class="chibi-story">{{ getChibiStory(mood) }}</p>
+    <h3 class="chibi-section-title">Meet the Mood Chibis</h3>
+    <div class="chibi-carousel" [ngClass]="selectedMood">
+      <div class="chibi-card" *ngFor="let mood of moods">
+        <img [src]="getMoodIcon(mood)" [alt]="mood" class="chibi-image" />
+        <h4 class="chibi-name">{{ getChibiName(mood) }}</h4>
+        <p class="chibi-story">{{ getChibiStory(mood) }}</p>
+      </div>
+    </div>
+  </section>
 </div>
-
-  </div>
-</section>
-
-
-
-</div>
-

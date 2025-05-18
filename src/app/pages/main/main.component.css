@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
   padding-top: 80px; /* To prevent content from hiding behind fixed header */
 }
 
