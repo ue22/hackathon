@@ -1,0 +1,45 @@
+<div class="chatbot-wrapper">
+  <!-- Floating Robot Button -->
+  <div class="chatbot-button" [ngClass]="mood" (click)="toggleChat()">
+    <img [src]="'/assets/icons/' + (mood ? mood : 'neutral') + '.png'" alt="Chatbot Icon" style="width: 60px; height: 60px; border-radius: 50%;" />
+  </div>
+
+  <!-- Chat Popup -->
+  <div class="chat-window" *ngIf="isChatOpen">
+    <div class="messages chat-messages">
+      <div
+        *ngFor="let msg of messages"
+        class="message"
+        [ngClass]="{ user: msg.sender === 'user', bot: msg.sender === 'bot' }"
+      >
+        {{ msg.text }}
+      </div>
+    </div>
+
+    <!-- Personality options -->
+    <div *ngIf="!personality" class="personality-options warning">
+      <p>Please choose a personality:</p>
+      <button (click)="selectPersonality('sassy')">Sassy 💅</button>
+      <button (click)="selectPersonality('dramatic')">Dramatic 🎭</button>
+      <button (click)="selectPersonality('chill')">Chill 😎</button>
+      <button (click)="selectPersonality('supportive')">Supportive 🤗</button>
+      <button (click)="selectPersonality('savage')">Savage 🔥</button>
+    </div>
+
+    <!-- Input area -->
+    <div *ngIf="personality" class="input-area">
+      <input
+        [(ngModel)]="userInput"
+        [disabled]="isLoading"
+        placeholder="Say something..."
+        (keydown.enter)="sendMessage()"
+      />
+      <button
+        (click)="sendMessage()"
+        [disabled]="isLoading || !userInput.trim()"
+      >
+        ➤
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="emoji-rain"></div>
+
+<form (ngSubmit)="onLogin()">
+  <h2>Login</h2>
+
+  <label>Email</label>
+  <input [(ngModel)]="form.email" name="email" type="email" required />
+
+  <label>Password</label>
+  <input [(ngModel)]="form.password" name="password" type="password" required />
+
+  <button type="submit">Login</button>
+
+  
+  <!-- Signup prompt -->
+  <p style="margin-top: 1rem; text-align: center; font-size: 0.9rem;">
+    Don't have an account?
+    <a routerLink="/register" style="color: #ff4c4c; text-decoration: underline;">Sign up</a>
+  </p>
+</form>

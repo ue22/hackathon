@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChatbotComponent } from "../chatbot/chatbot.component";
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ChatbotComponent],
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
