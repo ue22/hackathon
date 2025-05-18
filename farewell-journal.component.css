@@ -1,0 +1,159 @@
+/* Theme backgrounds & text colors */
+.theme-joy {
+  background-color: #fff9c4; /* Light yellow */
+  color: #fbc02d;
+}
+.theme-sadness {
+  background-color: #e3f2fd; /* Light blue */
+  color: #1e88e5;
+}
+.theme-rage {
+  background-color: #ffebee; /* Light red */
+  color: #e53935;
+}
+.theme-fear {
+  background-color: #ede7f6; /* Light purple */
+  color: #8e24aa;
+}
+.theme-peace {
+  background-color: #e8f5e9; /* Light green */
+  color: #43a047;
+}
+
+/* Rain effect */
+.rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+}
+.drop {
+  position: absolute;
+  bottom: 100%;
+  width: 2px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+/* Sparkle effect */
+.sparkle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+}
+.star {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle 2s infinite;
+}
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes fireFall {
+  0% {
+    transform: translateY(-10%);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    transform: translateY(100vh) scaleX(0.8) scaleY(1.5);
+    opacity: 0;
+    filter: blur(2px);
+  }
+}
+
+.animate-fire {
+  animation-name: fireFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes leafFall {
+  0% {
+    transform: translateY(-10%) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-leaf {
+  animation-name: leafFall;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes anxiousShake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-1px, -1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, 1px); }
+}
+
+.animate-anxious-overlay {
+  animation: anxiousShake 0.3s infinite;
+  backdrop-filter: blur(2px);
+  background-color: rgba(64, 0, 128, 0.2); /* Subtle purple anxiety tint */
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes anxietyLine {
+  0% { transform: scaleX(1); opacity: 0.5; }
+  50% { transform: scaleX(2); opacity: 0.1; }
+  100% { transform: scaleX(1); opacity: 0.5; }
+}
+
+.anxiety-line {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  animation: anxietyLine 0.2s linear infinite;
+}
+@keyframes anxietyFog {
+  0% { opacity: 0.5; filter: blur(1px); }
+  50% { opacity: 0.8; filter: blur(2.5px); }
+  100% { opacity: 0.5; filter: blur(1px); }
+}
+
+.animate-anxious-overlay {
+  animation: anxiousShake 0.3s infinite, anxietyFog 4s ease-in-out infinite;
+}
+
+/*  active state class for emotion buttons */
+button.active {
+  outline: 3px solid white;
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+.emoji-picker::-webkit-scrollbar {
+  width: 6px;
+}
+.emoji-picker::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}

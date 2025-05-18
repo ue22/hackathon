@@ -1,0 +1,181 @@
+<div [ngClass]="currentTheme.bgClass" class="min-h-screen overflow-hidden relative">
+  <!-- Dim Background Layer -->
+  <div class="absolute inset-0 bg-black bg-opacity-10 z-0 pointer-events-none"></div>
+
+  <!-- Rain Effect -->
+  <div id="rain" class="rain hidden z-10">
+    <div *ngFor="let drop of dropStyles"
+         class="drop"
+         [ngStyle]="{
+           left: drop.left,
+           animationDuration: drop.duration,
+           animationDelay: drop.delay
+         }">
+    </div>
+  </div>
+
+  <!-- Sparkle Effect -->
+  <div id="sparkle" class="sparkle hidden z-10">
+    <div *ngFor="let star of starStyles"
+         class="star"
+         [ngStyle]="{
+           top: star.top,
+           left: star.left,
+           animationDelay: star.delay
+         }">
+    </div>
+  </div>
+
+  <!-- Fire Effect (Rage) -->
+  <div id="fire" class="pointer-events-none absolute inset-0 overflow-visible hidden z-10 h-full w-full">
+    <div *ngFor="let fire of fireStyles"
+         class="absolute w-2 h-6 bg-orange-500 rounded-full opacity-70 animate-fire"
+         [ngStyle]="{
+           left: fire.left,
+           animationDuration: fire.duration,
+           animationDelay: fire.delay
+         }">
+    </div>
+  </div>
+
+  <!-- Anxious Effect -->
+  <div id="anxious" class="absolute inset-0 hidden z-10 pointer-events-none">
+    <div class="w-full h-full animate-anxious-overlay"></div>
+    <div *ngFor="let i of [].constructor(30); let idx = index"
+         class="absolute anxiety-line"
+         [style.top.%]="Math.random() * 100"
+         [style.animationDelay]="(Math.random() * 0.5) + 's'">
+    </div>
+  </div>
+
+  <!-- Peace Effect -->
+  <div id="leaves" class="pointer-events-none absolute inset-0 overflow-visible hidden z-10 h-full w-full">
+    <div *ngFor="let leaf of leafStyles"
+         class="absolute w-4 h-4 bg-green-300 rounded-full opacity-80 animate-leaf"
+         [ngStyle]="{
+           left: leaf.left,
+           animationDuration: leaf.duration,
+           animationDelay: leaf.delay
+         }">
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="bg-black bg-opacity-30 text-white p-4 z-20 relative">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="text-2xl font-bold">TheEndPage</div>
+      <ul class="flex space-x-6">
+        <li class="hover:text-yellow-200 cursor-pointer transition">Home</li>
+        <li class="hover:text-yellow-200 cursor-pointer transition">My Journal</li>
+        <li class="hover:text-yellow-200 cursor-pointer transition">Feed</li>
+        <li class="hover:text-yellow-200 cursor-pointer transition">Log Out</li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Emotion Buttons -->
+  <div class="flex justify-center gap-4 my-6 z-20 relative">
+    <button
+      *ngFor="let key of themeKeys"
+      (click)="setTheme(key)"
+      class="focus:outline-none transform hover:scale-105 transition"
+      [ngClass]="{ 'ring-4 ring-white rounded-full': currentThemeKey === key }">
+      <img
+        [src]="themes[key].icon"
+        [alt]="themes[key].name"
+        class="w-32 h-32 object-contain"
+      />
+    </button>
+  </div>
+
+  <!-- Main Content -->
+  <main class="flex-grow container mx-auto px-4 py-8 flex flex-col items-center z-20 relative">
+    <h1 class="text-5xl font-bold text-center mb-8 text-white drop-shadow-lg">
+      {{ currentTheme.title }}
+    </h1>
+
+    <div id="main-chibi" class="main-chibi floating mb-8">
+      <i class="fas text-9xl" [ngClass]="getIconClasses(currentThemeKey) + ' ' + currentTheme.color"></i>
+    </div>
+
+    <!-- Text Editor -->
+    <div class="w-full max-w-3xl bg-white bg-opacity-20 backdrop-blur-lg rounded-xl p-6 shadow-2xl"
+         (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+      <div class="flex justify-between mb-4">
+        <div class="flex space-x-2 items-center">
+          <!-- Image Upload -->
+          <div class="relative">
+            <input type="file" accept="image/*" (change)="handleFileInput($event)" hidden #fileInput />
+            <button (click)="fileInput.click()"
+                    class="bg-black bg-opacity-10 hover:bg-opacity-20 w-10 h-10 rounded-full flex items-center justify-center">
+              <i class="fas fa-image text-black"></i>
+            </button>
+          </div>
+
+          <!-- Gift Button -->
+          <button class="bg-black bg-opacity-10 hover:bg-opacity-20 w-10 h-10 rounded-full flex items-center justify-center">
+            <i class="fas fa-gift text-black"></i>
+          </button>
+
+          <!-- Emoji Picker -->
+          <div class="relative">
+            <button (click)="toggleEmojiPicker()"
+                    class="bg-black bg-opacity-10 hover:bg-opacity-20 w-10 h-10 rounded-full flex items-center justify-center">
+              <i class="fas fa-smile text-black"></i>
+            </button>
+
+            <div *ngIf="showEmojiPicker"
+                 class="absolute top-12 left-0 bg-white bg-opacity-90 backdrop-blur-lg rounded-lg shadow-lg p-2 z-50 w-64 max-h-60 overflow-y-auto grid grid-cols-6 gap-2 emoji-picker">
+              <span *ngFor="let emoji of emojis"
+                    (click)="insertEmoji(emoji)"
+                    class="cursor-pointer text-xl hover:scale-125 transition">
+                {{ emoji }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-black">
+          <i class="fas fa-palette mr-2"></i>
+          {{ currentTheme.name }}
+        </div>
+      </div>
+
+      <!-- Text Area -->
+      <textarea #textArea
+                class="w-full h-64 bg-white bg-opacity-70 backdrop-blur-sm rounded-lg p-4 text-black placeholder-black placeholder-opacity-60 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-30 resize-none"
+                placeholder="Write your farewell message here...">
+      </textarea>
+
+      <!-- Image Preview -->
+      <div *ngIf="uploadedImageUrl" class="mt-4 flex justify-center">
+        <img [src]="uploadedImageUrl"
+             alt="Uploaded preview"
+             class="max-h-64 rounded-lg shadow-lg border border-black border-opacity-30" />
+      </div>
+
+      <div class="flex justify-between mt-4 text-black text-sm">
+        <div><i class="fas fa-magic mr-1"></i> Theme effects active</div>
+        <div><i class="fas fa-clock mr-1"></i> Last saved: Just now</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-black bg-opacity-30 py-6 z-20 relative">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <div class="flex space-x-4"></div>
+      <div class="flex space-x-4">
+        <button (click)="toggleMusic()" class="bg-black bg-opacity-20 hover:bg-opacity-30 text-black w-12 h-12 rounded-full flex items-center justify-center transition">
+          <i class="fas" [ngClass]="isMusicPlaying ? 'fa-pause' : 'fa-music'"></i>
+        </button>
+        <button class="bg-black bg-opacity-20 hover:bg-opacity-30 text-black px-6 py-2 rounded-full flex items-center transition">
+          <i class="fas fa-save mr-2"></i> Save
+        </button>
+        <button class="bg-black bg-opacity-80 hover:bg-black text-white px-6 py-2 rounded-full flex items-center transition shadow-lg">
+          <i class="fas fa-share-alt mr-2"></i> Share
+        </button>
+      </div>
+    </div>
+  </footer>
+</div>
