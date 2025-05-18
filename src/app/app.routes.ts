@@ -4,7 +4,9 @@ import { MainComponent } from './pages/main/main.component';
 import { FeedComponent } from './pages/feed/feed.component'; // ✅ Add this import
 
 export const routes: Routes = [
-  { path: '', component: WarningpageComponent },
+  { path: 'warning', component: WarningpageComponent },
+  { path: '', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'main', component: MainComponent },
   { path: 'feed', component: FeedComponent }, // ✅ Register Feed route
   { path: '**', redirectTo: '', pathMatch: 'full' }
