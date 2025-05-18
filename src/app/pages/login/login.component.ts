@@ -72,7 +72,7 @@ export class LoginComponent implements AfterViewInit {
     this.authService.login(this.form).subscribe({
       next: res => {
         localStorage.setItem('token', res.token);
-        alert('Login successful! 🎉');
+        // alert('Login successful! 🎉');
         console.log('Logged in!');
         this.router.navigate(['/warning']);
       },

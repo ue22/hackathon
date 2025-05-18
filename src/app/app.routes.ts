@@ -10,6 +10,6 @@ export const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'main', component: MainComponent },
-  { path: 'feed', component: FeedComponent }, // ✅ Register Feed route
+  { path: 'feed', component: FeedComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

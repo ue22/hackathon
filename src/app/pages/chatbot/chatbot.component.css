@@ -1,0 +1,139 @@
+.chatbot-wrapper {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.chatbot-button {
+  width: 80px;
+  height: 80px;
+  background-color: #dbdbd8;
+  border-radius: 50%;
+  border:1px solid rgb(82, 82, 82);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.chatbot-button:hover {
+  transform: scale(1.1);
+}
+
+.chatbot-button img {
+  width: 35px;
+  height: 35px;
+}
+
+.chat-window {
+  width: 250px;
+  height: 270px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chatbot-button.happy {
+  background-color: #ffeb3b; /* or match main.component's happy bg */
+}
+
+.chatbot-button.sad {
+  background-color: #90caf9;
+}
+
+.chatbot-button.angry {
+  background-color: #ef5350;
+}
+
+.chatbot-button.anxious {
+  background-color: #ce93d8;
+}
+
+.chatbot-button.calm {
+  background-color: #a5d6a7;
+}
+
+
+.messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 12px;
+}
+
+.message {
+  margin: 5px 0;
+  padding: 6px 10px;
+  border-radius: 12px;
+  max-width: 85%;
+}
+
+.message.user {
+  background-color: #d1e7dd;
+  align-self: flex-end;
+}
+
+.message.bot {
+  background-color: #e2e3e5;
+  align-self: flex-start;
+}
+
+.input-area {
+  display: flex;
+  padding: 8px;
+  border-top: 1px solid #eee;
+}
+
+.input-area input {
+  flex: 1;
+  font-size: 12px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+}
+
+.input-area input:disabled {
+  background-color: #f0f0f0;
+}
+
+.input-area button {
+  margin-left: 5px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.input-area button:disabled {
+  background-color: #a0c4ff;
+  cursor: not-allowed;
+}
+
+.personality-options {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+
+.personality-options.warning p {
+  color: #dc3545;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
